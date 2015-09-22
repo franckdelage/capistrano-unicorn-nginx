@@ -26,7 +26,7 @@ server {
 
 server {
     listen 80;
-    server_name www.<%= fetch(:nginx_server_name) %>;
+    server_name <%= fetch(:nginx_server_name) %>;
     return 301 http://www.<%= fetch(:nginx_server_name) %>$request_uri;
 }
 
