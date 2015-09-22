@@ -38,7 +38,7 @@ namespace :unicorn do
     on roles :app do
       sudo_upload! template('unicorn_init.erb'), unicorn_initd_file
       execute :chmod, '+x', unicorn_initd_file
-      sudo 'update-rc.d', '-f', fetch(:unicorn_service), 'defaults'
+      sudo '/usr/sbin/update-rc.d', '-f', fetch(:unicorn_service), 'defaults'
     end
   end
 
@@ -63,7 +63,7 @@ namespace :unicorn do
     desc "#{command} unicorn"
     task command do
       on roles :app do
-        sudo 'service', fetch(:unicorn_service), command
+        sudo '/usr/sbin/service', fetch(:unicorn_service), command
       end
     end
   end
